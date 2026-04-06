@@ -32,11 +32,7 @@ function App() {
 
   return (
     <div style={{ padding: '40px', fontFamily: 'system-ui, sans-serif', maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}>
-      <h1>Kafka ABC</h1>
-      <h1>Demo Tùng</h1>
-      <h1>Demo Tùng</h1>
-      <h1>Demo Tùng</h1>
-      <p>Send a message through Spring Boot into Apache Kafka!</p>
+      <h1>Kafka</h1>
       <p>Send a message through Spring Boot into Apache Kafka!</p>
 
       <form onSubmit={sendToKafka} style={{ marginTop: '20px' }}>
