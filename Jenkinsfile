@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'maven-3'
+        nodejs 'node-25'
+    }
+
     environment {
         BACKEND_IMAGE  = 'kafka-demo-backend'
         FRONTEND_IMAGE = 'kafka-demo-frontend'
@@ -19,7 +24,7 @@ pipeline {
             steps {
                 echo '☕ Building Spring Boot application with Maven...'
                 dir('backend') {
-                    bat 'mvn clean package -DskipTests'
+                    sh 'mvn clean package -DskipTests'
                 }
             }
         }
@@ -28,8 +33,8 @@ pipeline {
             steps {
                 echo '⚛️  Building React application with npm...'
                 dir('frontend') {
-                    bat 'npm install'
-                    bat 'npm run build'
+                    sh 'npm install'
+                    sh 'npm run build'
                 }
             }
         }
@@ -37,16 +42,16 @@ pipeline {
         stage('Build Docker Images') {
             steps {
                 echo '🐳 Building Docker images...'
-                bat "docker build -t ${BACKEND_IMAGE}:latest  -t ${BACKEND_IMAGE}:${TAG}  ./backend"
-                bat "docker build -t ${FRONTEND_IMAGE}:latest -t ${FRONTEND_IMAGE}:${TAG} ./frontend"
+                sh "docker build -t ${BACKEND_IMAGE}:latest  -t ${BACKEND_IMAGE}:${TAG}  ./backend"
+                sh "docker build -t ${FRONTEND_IMAGE}:latest -t ${FRONTEND_IMAGE}:${TAG} ./frontend"
             }
         }
 
         stage('Deploy with Docker Compose') {
             steps {
                 echo '🚀 Deploying all services with Docker Compose...'
-                bat 'docker-compose down'
-                bat 'docker-compose up -d'
+                sh 'docker-compose down'
+                sh 'docker-compose up -d'
             }
         }
     }
@@ -58,10 +63,11 @@ pipeline {
         success {
             echo '✅ Deployment successful!'
             echo '   Frontend: http://localhost:3000'
-            echo '   Backend:  http://localhost:8080'
+            echo '   Backend:  http://localhost:8081'
         }
         failure {
             echo '❌ Pipeline failed. Check the logs above for details.'
         }
     }
 }
+
