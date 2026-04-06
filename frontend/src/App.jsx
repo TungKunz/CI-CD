@@ -35,7 +35,8 @@ function App() {
       <h1>Kafka ABC</h1>
       <h1>Demo Tùng</h1>
       <p>Send a message through Spring Boot into Apache Kafka!</p>
-      
+      <p>Send a message through Spring Boot into Apache Kafka!</p>
+
       <form onSubmit={sendToKafka} style={{ marginTop: '20px' }}>
         <input 
           type="text" 
