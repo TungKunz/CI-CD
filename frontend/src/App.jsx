@@ -33,8 +33,7 @@ function App() {
   return (
     <div style={{ padding: '40px', fontFamily: 'system-ui, sans-serif', maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}>
       <h1>Kafka</h1>
-      <h1>Kafka</h1>
-      <h1>Kafka</h1>
+      <h1>Test CI/CD</h1>
       <p>Send a message through Spring Boot into Apache Kafka!</p>
 
       <form onSubmit={sendToKafka} style={{ marginTop: '20px' }}>
@@ -45,6 +44,9 @@ function App() {
           placeholder="Enter a message"
           style={{ padding: '10px', width: '70%', border: '1px solid #ccc', borderRadius: '4px' }}
         />
+
+
+
         <button 
           type="submit"
           style={{ padding: '10px 20px', marginLeft: '10px', background: '#007bff', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
